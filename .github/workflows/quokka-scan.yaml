@@ -7,8 +7,15 @@ on:
 
 jobs:
   submit-to-quokka:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
+      - name: Check if today is Monday
+        run: |
+          TODAY=$(date +%u) # %u gives the day of the week as a number (1=Monday, ..., 5=Friday, 7=Sunday)
+          if [ "$TODAY" -ne 1 ]; then
+            echo "Today is not Monday. Exiting..."
+            exit 1
+          fi
       - name: Check if today is Friday
         run: |
           TODAY=$(date +%u) # %u gives the day of the week as a number (1=Monday, ..., 5=Friday, 7=Sunday)
