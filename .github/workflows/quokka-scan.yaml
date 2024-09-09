@@ -1,0 +1,23 @@
+name: Submit IPA to Quokka Scan
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [xcode_cloud_build_success]
+
+jobs:
+  submit-to-quokka:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if today is Friday
+        run: |
+          TODAY=$(date +%u) # %u gives the day of the week as a number (1=Monday, ..., 5=Friday, 7=Sunday)
+          if [ "$TODAY" -ne 5 ]; then
+            echo "Today is not Friday. Exiting..."
+            exit 0
+          fi
+
+      - name: Run Quokka Scan
+        run: |
+          # Add your steps to submit IPA to Quokka Scan here
+          echo "Running Quokka Scan as today is Friday."
