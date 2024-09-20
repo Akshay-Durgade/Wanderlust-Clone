@@ -18,7 +18,10 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: akshaysdurgade/frontend-akshay:v2.1.8 
+          image: akshaysdurgade/frontend-akshay:v1.0.0
+          env:
+            - name: VITE_API_PATH
+              value: "http://192.168.64.2:31100"
           ports:
             - containerPort: 5173
 ---
